@@ -1,4 +1,3 @@
-// script.js
 document.getElementById('pos-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -8,7 +7,7 @@ document.getElementById('pos-form').addEventListener('submit', function(event) {
 
     let cartItems = document.getElementById('cart-items');
     let listItem = document.createElement('li');
-    listItem.textContent = `${itemName} - ${itemQuantity} x $${itemPrice.toFixed(2)} = $${(itemQuantity * itemPrice).toFixed(2)}`;
+    listItem.textContent = `${itemName} - ${itemQuantity} x ฿${itemPrice.toFixed(2)} = ฿${(itemQuantity * itemPrice).toFixed(2)}`;
     cartItems.appendChild(listItem);
 
     let totalPriceElement = document.getElementById('total-price');
@@ -20,17 +19,12 @@ document.getElementById('pos-form').addEventListener('submit', function(event) {
 });
 
 document.getElementById('checkout').addEventListener('click', function() {
-    alert('Checkout complete! Total: $' + document.getElementById('total-price').textContent);
-});
-
-// Aditional Scripts
-document.getElementById('checkout').addEventListener('click', function() {
     let items = [];
     document.querySelectorAll('#cart-items li').forEach(function(item) {
         items.push(item.textContent);
     });
 
-    fetch('https://script.google.com/macros/s/AKfycbyvkR-Jk8XKrJAf-IVTIGb72py-luJB4J1l2f6zhRxPtj1oJuYumEhvE7ssLXyblwhRQw/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbw_isH0QSsn2noNCy6OussI0r5Uma-LOlVtUZywE9Cu-ONNPV7HvhW8Sh94vfoIGetyfQ/exec', {
         method: 'POST',
         body: JSON.stringify({
             items: items.join('\n'),
@@ -39,7 +33,8 @@ document.getElementById('checkout').addEventListener('click', function() {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(response => response.text())
-      .then(data => alert(data))
-      .catch(error => console.error('Error:', error));
+    })
+    .then(response => response.text())
+    .then(data => alert(data))
+    .catch(error => console.error('Error:', error));
 });
