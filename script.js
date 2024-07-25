@@ -27,8 +27,10 @@ document.getElementById('checkout').addEventListener('click', function() {
     fetch('https://script.google.com/macros/s/AKfycbw_isH0QSsn2noNCy6OussI0r5Uma-LOlVtUZywE9Cu-ONNPV7HvhW8Sh94vfoIGetyfQ/exec', {
         method: 'POST',
         body: JSON.stringify({
-            items: items.join('\n'),
-            totalPrice: document.getElementById('total-price').textContent
+            itemName: 'กระเพาะปลา', // Replace with actual item name logic from your UI
+            itemQuantity: 1,          // Replace with actual item quantity logic from your UI
+            itemPrice: 60.00,        // Replace with actual item price logic from your UI
+            totalPrice: parseFloat(document.getElementById('total-price').textContent)
         }),
         headers: {
             'Content-Type': 'application/json'
